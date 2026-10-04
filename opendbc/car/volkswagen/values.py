@@ -228,7 +228,7 @@ class VolkswagenFlags(IntFlag):
   # Static flags
   PQ = 2
   MLB = 8
-  MLB_EVO = 16  # TODO: Audi A7 C8 (and other MLB evo cars) via pico-flexray translation to CAN. Not tested on a car.
+  MLB_EVO = 512  # TODO: Audi A7 C8 (and other MLB evo cars) via pico-flexray translation to CAN. Not tested on a car.
   MEB = 16
   MEB_GEN2 = 128
 
