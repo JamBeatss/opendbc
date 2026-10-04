@@ -228,6 +228,7 @@ class VolkswagenFlags(IntFlag):
   # Static flags
   PQ = 2
   MLB = 8
+  MLB_EVO = 16  # TODO: Audi A7 C8 (and other MLB evo cars) via pico-flexray translation to CAN. Not tested on a car.
   MEB = 16
   MEB_GEN2 = 128
 
@@ -240,6 +241,20 @@ class VolkswagenMLBPlatformConfig(PlatformConfig):
 
   def init(self):
     self.flags |= VolkswagenFlags.MLB
+
+
+@dataclass
+class VolkswagenMLBEvoPlatformConfig(PlatformConfig):
+  # TODO: WIP placeholder. MLB evo differs from MLB pre-evo by using FlexRay for ADAS instead of CAN.
+  # The pico-flexray hardware (https://github.com/dynm/pico-flexray) translates FlexRay to CAN above the panda-USB layer,
+  # so above the hardware the car looks CAN. Many messages (HCA_01, LH_EPS_03, ESP_03, ACC_01/05, LS_01, Motor_03) are
+  # expected to carry over bit-compatibly from MLB; this must be verified per model via Cabana captures.
+  dbc_dict: DbcDict = field(default_factory=lambda: {Bus.pt: 'vw_mlbevo'})  # TODO: currently a copy of vw_mlb, extend with MLB-evo-specific frames (e.g. 0x44 on the BDC)
+  chassis_codes: set[str] = field(default_factory=set)
+  wmis: set[WMI] = field(default_factory=set)
+
+  def init(self):
+    self.flags |= VolkswagenFlags.MLB_EVO
 
 
 @dataclass
@@ -525,6 +540,19 @@ class CAR(Platforms):
     VolkswagenCarSpecs(mass=1895, wheelbase=2.81, steerRatio=16.2),
     chassis_codes={"95", "A5"},
     wmis={WMI.PORSCHE_SUV},
+  )
+  # TODO: WIP placeholder for Audi A7 C8 (MLB evo) port. Not tested on a car.
+  # VIN check: WAU prefix (Germany Car) + chassis code 4K in positions 7-8.
+  # Reference car for first fingerprint: 2021 US A7 Premium Plus.
+  AUDI_A7_MK2 = VolkswagenMLBEvoPlatformConfig(
+    [
+      VWCarDocs("Audi A7 2019-24"),   # TODO: narrow year range after fingerprinting
+      VWCarDocs("Audi S7 2020-24"),   # TODO: unverified sibling
+      VWCarDocs("Audi RS7 2020-24"),  # TODO: unverified sibling
+    ],
+    VolkswagenCarSpecs(mass=1945, wheelbase=2.93, steerRatio=15.9),  # TODO: verify from Audi spec sheet
+    chassis_codes={"4K"},
+    wmis={WMI.AUDI_GERMANY_CAR, WMI.AUDI_SPORT},
   )
   SEAT_ATECA_MK1 = VolkswagenMQBPlatformConfig(
     [
