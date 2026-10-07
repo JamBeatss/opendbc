@@ -1,5 +1,7 @@
 # Audi A7 MLB evo port - compiled research (2026-10-04)
 
+A one-file dump of what was learned during the 2026-10-04 research session. Everything in this file is a reference, not a plan. The project is paused as of that date; this file exists so that the next person to revisit the fork - the fork owner, or anyone they later share the fork with - doesn't start from zero.
+
 ## Corrections (2026-10-06)
 
 Two claims in the first version of this file were wrong, as pointed out by Dennis in the comma.ai Discord:
@@ -8,8 +10,6 @@ Two claims in the first version of this file were wrong, as pointed out by Denni
 2. **The pre-evo MLB DBC is not correct for MLB evo.** Do not use `vw_mlb.dbc` signal names or layouts as a starting point for an MLB-evo port. MLB-evo DBC files exist; start from those.
 
 The sections below have been edited accordingly.
-
-A one-file dump of what was learned during the 2026-10-04 research session. Everything in this file is a reference, not a plan. The project is paused as of that date; this file exists so that the next person to revisit the fork - the fork owner, or anyone they later share the fork with - doesn't start from zero.
 
 ## Why MLB evo is the gap
 

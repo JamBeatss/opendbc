@@ -38,7 +38,7 @@ pico-flexray MITM module (https://github.com/dynm/pico-flexray) translates FlexR
 
 ## What's in this branch
 
-- `opendbc/car/volkswagen/values.py` - placeholder `AUDI_A7_MK2` entry under a new `VolkswagenMLBEvoPlatformConfig` class with a `VolkswagenFlags.MLB_EVO = 16` flag. All marked `# TODO`.
+- `opendbc/car/volkswagen/values.py` - placeholder `AUDI_A7_MK2` entry under a new `VolkswagenMLBEvoPlatformConfig` class with a `VolkswagenFlags.MLB_EVO = 512` flag. All marked `# TODO`.
 - `opendbc/dbc/vw_mlbevo.dbc` - placeholder, byte-identical copy of `vw_mlb.dbc` with a header comment marking it as a placeholder. Known not to match MLB evo (per Dennis, 2026-10-06); to be replaced with a real MLB-evo DBC.
 - `RESEARCH.md` - compiled findings from the 2026-10-04 research session: the upstream opendbc MLB layout, VolkswagenFlags bit allocation, the pre-evo MLB signal map (reference only; does not carry over to MLB evo), pico-flexray architecture, candidate taps, DBC sources, template ports to copy, and the reading list.
 
