@@ -1049,6 +1049,17 @@ FW_VERSIONS = {
       b'\xf1\x8795B907567J \xf1\x890440\xf1\x82104',
     ],
   },
+  CAR.AUDI_A7_MK2: {
+    # TODO: fill in from VCDS/OBDeleven scan of the reference 2021 US A7.
+    # Values below are structural placeholders only - do NOT trust them until the car is scanned.
+    (Ecu.engine, 0x7e0, None): set(),           # TODO: 06E906027* on EA839 3.0T
+    (Ecu.transmission, 0x7e1, None): set(),    # TODO: ZF 8HP AL552/AL592 part number
+    (Ecu.srs, 0x715, None): set(),              # TODO: airbag module FW
+    (Ecu.eps, 0x712, None): set(),              # TODO: LH_EPS_03 sender firmware
+    (Ecu.fwdRadar, 0x757, None): set(),         # TODO: Bosch 4K0907561 ACC radar
+    (Ecu.fwdCamera, 0x74f, None): set(),        # TODO: forward camera
+    (Ecu.gateway, 0x710, None): set(),          # TODO: J533 gateway firmware
+  },
   CAR.SEAT_ATECA_MK1: {
     (Ecu.engine, 0x7e0, None): [
       b'\xf1\x8704E906027KA\xf1\x893749',

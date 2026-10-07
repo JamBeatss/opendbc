@@ -541,17 +541,20 @@ class CAR(Platforms):
     chassis_codes={"95", "A5"},
     wmis={WMI.PORSCHE_SUV},
   )
-  # TODO: WIP placeholder for Audi A7 C8 (MLB evo) port. Not tested on a car.
-  # VIN check: WAU prefix (Germany Car) + chassis code 4K in positions 7-8.
-  # Reference car for first fingerprint: 2021 US A7 Premium Plus.
+  # TODO: WIP placeholder for Audi A7 C8 (MLB evo) port. NOT tested on a car. Signals NOT verified.
+  # Dennis (comma Discord, 2026-10-06) has offered MLB-Evo DBC files; those must be used to
+  # verify every signal before this entry is trusted. Reference car: a 2021 US A7
+  # Premium Plus 3.0T, odometer ~57,715 km as of 2026-10-05.
   AUDI_A7_MK2 = VolkswagenMLBEvoPlatformConfig(
     [
-      VWCarDocs("Audi A7 2019-24"),   # TODO: narrow year range after fingerprinting
-      VWCarDocs("Audi S7 2020-24"),   # TODO: unverified sibling
-      VWCarDocs("Audi RS7 2020-24"),  # TODO: unverified sibling
+      VWCarDocs("Audi A7 2019-24"),             # TODO: narrow year range after fingerprinting
+      VWCarDocs("Audi S7 2020-24"),             # TODO: unverified sibling
+      VWCarDocs("Audi RS7 2020-24"),            # TODO: unverified sibling
     ],
-    VolkswagenCarSpecs(mass=1945, wheelbase=2.93, steerRatio=15.9),  # TODO: verify from Audi spec sheet
-    chassis_codes={"4K"},
+    # Public specs from Audi A7 2021 US datasheet. Steer ratio is an estimate; verify from Audi
+    # service data or an EPS self-report measurement.
+    VolkswagenCarSpecs(mass=1945, wheelbase=2.928, steerRatio=16.3),
+    chassis_codes={"4K"},                       # C8 chassis code; A7 Sportback, RS7
     wmis={WMI.AUDI_GERMANY_CAR, WMI.AUDI_SPORT},
   )
   SEAT_ATECA_MK1 = VolkswagenMQBPlatformConfig(
