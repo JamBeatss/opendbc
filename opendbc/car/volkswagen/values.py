@@ -541,10 +541,7 @@ class CAR(Platforms):
     chassis_codes={"95", "A5"},
     wmis={WMI.PORSCHE_SUV},
   )
-  # TODO: WIP placeholder for Audi A7 C8 (MLB evo) port. NOT tested on a car. Signals NOT verified.
-  # Dennis (comma Discord, 2026-10-06) has offered MLB-Evo DBC files; those must be used to
-  # verify every signal before this entry is trusted. Reference car: a 2021 US A7
-  # Premium Plus 3.0T, odometer ~57,715 km as of 2026-10-05.
+  # TODO: WIP placeholder. 2021 US A7 reference. Signals NOT verified. See AUDI_A7_MLBEVO_PORT.md.
   AUDI_A7_MK2 = VolkswagenMLBEvoPlatformConfig(
     [
       VWCarDocs("Audi A7 2019-24"),             # TODO: narrow year range after fingerprinting

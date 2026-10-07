@@ -1,16 +1,8 @@
-// =============================================================================
-// WIP DRAFT - Audi A7 C8 (MLB evo) safety file
-// =============================================================================
-// Cloned from volkswagen_mlb.h on 2026-10-06 as a STRUCTURAL starting point.
-// MLB evo is NOT MLB pre-evo - per Dennis (comma Discord 2026-10-06), the
-// pre-evo MLB DBC is NOT correct for MLB evo. Every message ID, bit position,
-// and scale factor used below MUST be re-verified against the reference 2021 US A7
-// using an MLB-evo DBC and Cabana captures before this
-// safety file is trusted for anything beyond compiling and running the test
-// suite's structural checks.
-//
-// DO NOT INSTALL. DO NOT DRIVE. The constants below are PLACEHOLDERS.
-// =============================================================================
+// WIP DRAFT - Audi A7 C8 (MLB evo). Cloned from volkswagen_mlb.h on 2026-10-06.
+// MLB evo != MLB pre-evo (per Dennis, comma Discord, 2026-10-06): message IDs,
+// bit positions, and scale factors below MUST be re-verified against a real
+// MLB-evo DBC before this file is trusted beyond compiling.
+// DO NOT INSTALL. DO NOT DRIVE.
 #pragma once
 
 #include "opendbc/safety/declarations.h"
