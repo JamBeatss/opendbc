@@ -28,7 +28,7 @@ pico-flexray MITM module (https://github.com/dynm/pico-flexray) translates FlexR
 ## Phases
 
 - Phase 0 (now): design, offline signal study against Robbe Derks' Q8 FlexRay dumps (https://github.com/robbederks/q8_flexray_dumps), community recon. **No hardware purchased yet.**
-- Phase 0.5: offline signal identification against the Q8 dumps + the rusefi B8/D4/C7 MLB DBC Dennis linked. Build a draft `vw_mlbevo.dbc` from `vw_mlb.dbc` plus MLB-evo-specific additions.
+- Phase 0.5: offline signal identification against the Q8 dumps + MLB-evo DBC files (Dennis has some). Build a draft `vw_mlbevo.dbc` from an MLB-evo DBC, not from `vw_mlb.dbc` or the pre-evo rusefi MLB DBC (per Dennis, 2026-10-06, the MLB DBC is not correct for MLB evo).
 - Phase 1: Pico 2 (RP2350) + TLE9222 transceiver + harness. Flash pico-flexray firmware. Four-resistor passive snooper first if Nitrogen shares the schematic.
 - Phase 2: read-only tap at the J533 gateway. Confirm frame `0x44` on the BDC. Collect Cabana routes in varied driving states.
 - Phase 3: signal identification in Cabana (demux cycle count, label steering/wheel speeds/ACC/buttons/doors).
@@ -39,8 +39,8 @@ pico-flexray MITM module (https://github.com/dynm/pico-flexray) translates FlexR
 ## What's in this branch
 
 - `opendbc/car/volkswagen/values.py` - placeholder `AUDI_A7_MK2` entry under a new `VolkswagenMLBEvoPlatformConfig` class with a `VolkswagenFlags.MLB_EVO = 16` flag. All marked `# TODO`.
-- `opendbc/dbc/vw_mlbevo.dbc` - placeholder, byte-identical copy of `vw_mlb.dbc` with a header comment noting it is a starting point only.
-- `RESEARCH.md` - compiled findings from the 2026-10-04 research session: the upstream opendbc MLB layout, VolkswagenFlags bit allocation, pre-evo MLB vs expected MLB evo signal map, pico-flexray architecture, candidate taps, DBC sources, template ports to copy, and the reading list.
+- `opendbc/dbc/vw_mlbevo.dbc` - placeholder, byte-identical copy of `vw_mlb.dbc` with a header comment marking it as a placeholder. Known not to match MLB evo (per Dennis, 2026-10-06); to be replaced with a real MLB-evo DBC.
+- `RESEARCH.md` - compiled findings from the 2026-10-04 research session: the upstream opendbc MLB layout, VolkswagenFlags bit allocation, the pre-evo MLB signal map (reference only; does not carry over to MLB evo), pico-flexray architecture, candidate taps, DBC sources, template ports to copy, and the reading list.
 
 ## What is NOT here (TODO before any PR)
 

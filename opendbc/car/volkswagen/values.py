@@ -247,9 +247,9 @@ class VolkswagenMLBPlatformConfig(PlatformConfig):
 class VolkswagenMLBEvoPlatformConfig(PlatformConfig):
   # TODO: WIP placeholder. MLB evo differs from MLB pre-evo by using FlexRay for ADAS instead of CAN.
   # The pico-flexray hardware (https://github.com/dynm/pico-flexray) translates FlexRay to CAN above the panda-USB layer,
-  # so above the hardware the car looks CAN. Many messages (HCA_01, LH_EPS_03, ESP_03, ACC_01/05, LS_01, Motor_03) are
-  # expected to carry over bit-compatibly from MLB; this must be verified per model via Cabana captures.
-  dbc_dict: DbcDict = field(default_factory=lambda: {Bus.pt: 'vw_mlbevo'})  # TODO: currently a copy of vw_mlb, extend with MLB-evo-specific frames (e.g. 0x44 on the BDC)
+  # so above the hardware the car looks CAN.
+  # Per comma Discord (Dennis, 2026-10-06), the pre-evo MLB DBC is NOT correct for MLB evo; signals must come from an MLB-evo DBC.
+  dbc_dict: DbcDict = field(default_factory=lambda: {Bus.pt: 'vw_mlbevo'})  # TODO: placeholder copy of vw_mlb; must be replaced with an MLB-evo DBC
   chassis_codes: set[str] = field(default_factory=set)
   wmis: set[WMI] = field(default_factory=set)
 

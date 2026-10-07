@@ -1,5 +1,14 @@
 # Audi A7 MLB evo port - compiled research (2026-10-04)
 
+## Corrections (2026-10-06)
+
+Two claims in the first version of this file were wrong, as pointed out by Dennis in the comma.ai Discord:
+
+1. **The Macan is not MLB evo.** All combustion Macans (95B) are on the MLB "Cajun" platform, very similar to MLB B8 (A4, A5, Q5), non-FlexRay, and supportable by openpilot. The post-2018 **Cayenne** is the MLB-evo / FlexRay Porsche; it was conflated with the Macan.
+2. **The pre-evo MLB DBC is not correct for MLB evo.** Do not use `vw_mlb.dbc` signal names or layouts as a starting point for an MLB-evo port. MLB-evo DBC files exist; start from those.
+
+The sections below have been edited accordingly.
+
 A one-file dump of what was learned during the 2026-10-04 research session. Everything in this file is a reference, not a plan. The project is paused as of that date; this file exists so that the next person to revisit the fork - the fork owner, or anyone they later share the fork with - doesn't start from zero.
 
 ## Why MLB evo is the gap
@@ -15,7 +24,7 @@ Upstream `opendbc/car/volkswagen/` already supports three VAG platforms:
 
 The DBC family also includes `vw_mqbevo.dbc` for the newer MQB evo generation, which is the precedent for the "evo as its own thing" pattern we would mirror for MLB.
 
-**MLB evo (2018+ A6/A7/A8/Q7/Q8/e-tron, Porsche Macan post-facelift, Bentley Bentayga, Lamborghini Urus and others) is unsupported** because its ADAS traffic runs on **FlexRay** instead of CAN. All openpilot safety and panda code assumes CAN.
+**MLB evo (2018+ A6/A7/A8/Q7/Q8/e-tron, Porsche Cayenne (2018+), Bentley Bentayga, Lamborghini Urus and others) is unsupported** because its ADAS traffic runs on **FlexRay** instead of CAN. All openpilot safety and panda code assumes CAN.
 
 Dennis in #volkswagen-audi-porsche summed it up: "MLB-Evo uses Flexray. So same deal unfortunately." Jason Young (`jyoung8607`, ultra openpilot contributor) in #general: "Most Porsche hasn't really been investigated... but many of them are likely to use MLB (non-evo) Audi Q5, and is purely CAN, so we can drive it. ... Certain older ones, but not the current gen MLB evo ones unfortunately."
 
@@ -43,9 +52,9 @@ Pravin K (`pravink2089` on YouTube, Discord credits "dolson/defender/flexray") p
 | `dolson8874/opendbc` | opendbc fork. **Note (verified 2026-10-04): master branch has no `car/landrover/` folder; the JLR car-port code pravink2089 pointed people at in the YouTube comments must live in a draft branch or private tree. Worth asking dolson or Pravin where.** |
 | `dolson8874/q8_flexray_dumps` | Mirror of Robbe Derks' Q8 captures. |
 
-## Where the signals live on MLB (pre-evo), as a hypothesis for MLB evo
+## Where the signals live on MLB (pre-evo) - reference only, not MLB evo
 
-Upstream `opendbc/safety/modes/volkswagen_mlb.h` already enforces these frames for MLB pre-evo. Expect bit-compatible or close-to-compatible names on MLB evo, verifiable per-message via Cabana:
+Upstream `opendbc/safety/modes/volkswagen_mlb.h` already enforces these frames for MLB pre-evo. Per Dennis (2026-10-06), these do not carry over to MLB evo. Use an MLB-evo DBC instead.
 
 | Message | Hex ID | Role in safety file | Signal of interest |
 |---|---|---|---|
@@ -91,7 +100,7 @@ Nitrogen's alternative suggestion (same thread, 2026-06-30): "You can tap any Fl
 
 Infrastructure-wise, this is additive, not a brand-new brand folder. The pattern is:
 
-1. New DBC `opendbc/dbc/vw_mlbevo.dbc` (starts as a copy of `vw_mlb.dbc` + MLB-evo-specific frames like `0x44`).
+1. New DBC `opendbc/dbc/vw_mlbevo.dbc`, built from MLB-evo DBC sources (e.g. the files Dennis has), **not** from a copy of `vw_mlb.dbc`. It must include MLB-evo-specific frames like `0x44`.
 2. New `VolkswagenMLBEvoPlatformConfig` class in `opendbc/car/volkswagen/values.py` with a new `VolkswagenFlags.MLB_EVO` bit.
 3. Per-car entry alongside `PORSCHE_MACAN_MK1` (which is the only MLB entry today).
 4. Firmware fingerprints in `fingerprints.py` from a real car via VCDS/OBDeleven.

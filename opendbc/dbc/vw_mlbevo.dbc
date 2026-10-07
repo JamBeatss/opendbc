@@ -1,4 +1,4 @@
-CM_ "WIP placeholder: this file is an inherited copy of vw_mlb.dbc (pre-evo MLB). MLB evo (FlexRay-translated-via-pico-flexray) is expected to overlap substantially in signal names and bit layouts, but must be verified per message via Cabana captures. Known MLB-evo-specific frame: 0x44 on the BDC (per Nitrogen, pico-flexray OP). To be extended as the reference A7 captures land. Do not treat the inherited signals as validated for MLB evo until a per-signal check is done.";
+CM_ "WIP placeholder: byte-identical copy of vw_mlb.dbc (pre-evo MLB). Per comma Discord (Dennis, 2026-10-06), the MLB DBC is NOT correct for MLB evo; this file must be replaced with a real MLB-evo DBC before any use. Known MLB-evo-specific frame: 0x44 on the BDC (per Nitrogen).";
 VERSION "HNNBNNNYNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN/4/%%%/4/'%**4NNN///"
 
 
