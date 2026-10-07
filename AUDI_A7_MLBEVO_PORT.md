@@ -4,15 +4,16 @@ Draft of an openpilot/opendbc port for the Audi A7 C8 (chassis `4K`, MLB evo pla
 
 ## Status
 
-Skeleton. Compiles. Structural tests pass (safety mode name pending upstream `cereal`). **Signals not verified against the car. Do not install.**
+Skeleton. Compiles. The structural safety test skips until `volkswagenMlbEvo` is added to `SafetyModel` in `opendbc/car/car.capnp`. **Signals not verified against the car. Do not install.**
 
 ## In this branch
 
 - `opendbc/car/volkswagen/values.py` - `AUDI_A7_MK2` entry under new `VolkswagenMLBEvoPlatformConfig` + `VolkswagenFlags.MLB_EVO = 512`
 - `opendbc/car/volkswagen/fingerprints.py` - `AUDI_A7_MK2` ECU slot skeleton, all empty
 - `opendbc/safety/modes/volkswagen_mlb_evo.h` - safety file, cloned from `volkswagen_mlb.h` with WIP banner
-- `opendbc/safety/tests/test_volkswagen_mlb_evo.py` - structural test, skips until `cereal` adds `volkswagenMlbEvo` to `SafetyModel`
+- `opendbc/safety/tests/test_volkswagen_mlb_evo.py` - structural test, skips until `volkswagenMlbEvo` is added to `SafetyModel` in `opendbc/car/car.capnp` and the safety hooks are registered
 - `opendbc/dbc/vw_mlbevo.dbc` - placeholder, byte-identical to `vw_mlb.dbc`, to be replaced with a real MLB-evo DBC
+- `RESEARCH.md` - short notes: what exists for FlexRay and MLB evo today, and what is unknown for the A7
 
 ## Open blockers
 

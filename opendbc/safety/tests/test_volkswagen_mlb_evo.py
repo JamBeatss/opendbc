@@ -9,10 +9,10 @@ message IDs, bit positions, and scale factors in volkswagen_mlb_evo.h are
 verified against the reference 2021 A7 via Cabana captures
 and the MLB-evo DBC files Dennis offered on 2026-10-06.
 """
-# TODO: SafetyModel.volkswagenMlbEvo does not exist in cereal yet. The tests
-# below are skipped until a new enum value is added to cereal and the safety
-# hook `volkswagen_mlb_evo_hooks` is registered in opendbc/safety/safety.h and
-# opendbc/safety/declarations.h. Do NOT modify cereal in this branch.
+# TODO: SafetyModel.volkswagenMlbEvo does not exist yet. The tests below are
+# skipped until a new enum value is added to SafetyModel in
+# opendbc/car/car.capnp and the safety hook `volkswagen_mlb_evo_hooks` is
+# registered in opendbc/safety/safety.h and opendbc/safety/declarations.h.
 import unittest
 
 import pytest
@@ -29,7 +29,7 @@ MSG_LDW_02 = 0x397      # TX by OP, Lane line recognition and text alerts
 # volkswagen_mlb_evo_hooks safety-mode registration land.
 if not hasattr(CarParams.SafetyModel, "volkswagenMlbEvo"):
   pytest.skip(
-    "SafetyModel.volkswagenMlbEvo is not defined in cereal yet; "
+    "SafetyModel.volkswagenMlbEvo is not defined in opendbc/car/car.capnp yet; "
     "MLB evo safety mode is still a WIP skeleton.",
     allow_module_level=True,
   )
